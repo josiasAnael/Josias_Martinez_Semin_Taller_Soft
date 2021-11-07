@@ -11,6 +11,17 @@
           <div style="margin-left: 12%;" class="form-group">
             <input type="number" name="NumeroMunicipio" value="<%= data.NumeroMunicipio%>" maxlength="3" placeholder="Numero Municipio" class="form-control" required="required" >
           </div>
+          <div  style="margin-left: 12%;" class="form-group">
+            <select name="estado" class="form-control" id="estado" required>
+              <% if (data.estado == 1) { %>
+                <option name="estado" value="1" selected>activo</option>
+                <option name="estado" value="0">Inactivo</option>
+              <%} else{ %>
+                <option name="estado" value="1">activo</option>    
+              <option name="estado" value="0" selected>Inactivo</option> 
+              <% } %> 
+            </select>
+          </div>
           <button style="background-color: green; margin-left: 12%;" type="submit" class="btn btn-primary">
             Actualizar Municipio
           </button>

@@ -13,7 +13,12 @@
             <div class="form-group">
               <input type="number" style="text-align: center; margin:10px" name="NumeroMunicipio"  maxlength="3"  placeholder="Numero del Municipio" class="form-control" required="required" autofocus>
             </div>
-
+            <div class="form-group">
+              <select name="estado" style="text-align: center; margin:10px"  class="form-control" id="estado" required>
+                <option name="estado" value="1">activo</option>
+                <option name="estado" value="0">Inactivo</option>  
+              </select>
+            </div>
             <button style="background-color: green;" type="submit" class="btn btn-primary">
               Guardar Municipio
             </button>
@@ -28,6 +33,7 @@
             <th>Id</th>
             <th>Nombre Municipio</th>
             <th>Numero Municipio</th>
+            <th>Estado</th>
             <th><b>Opciones</b></th>
           </tr>
         </thead>
@@ -38,8 +44,9 @@
                 <td><%= (i + 1) %></td>
                 <td><%= data[i].NombreMunicipio %></td>
                 <td><%= data[i].NumeroMunicipio %></td>
+                <td><%= data[i].estado %></td>
                 <td>
-                  <a  href="/municipio/updatem/<%= data[i].idMunicipio %>" class="btn btn-warning">Actualizar</a>
+                  <a  href="/municipio/updatem/<%= data[i].idMunicipio %>" style="margin:5px" class="btn btn-warning">Actualizar</a>
                   <a style="margin-top: 2px; background-color: red;" href="/municipio/deletem/<%= data[i].idMunicipio %>" class="btn btn-danger">Eliminar</a>
                 </td>
               </tr>
