@@ -3,7 +3,7 @@ const controller = {};
 controller.list = (req, res) => {
   req.getConnection((err, conn) => {
     conn.query(`
-    SELECT municipio.NombreMunicipio AS Municipio, Nombre, cliente.idCliente as id, Apellido, Telefono, Correo, Direccion FROM cliente LEFT JOIN municipio ON cliente.Municipio = municipio.idMunicipio;
+    SELECT municipio.NombreMunicipio AS Municipio, Nombre,estado ,cliente.idCliente as id, Apellido, Telefono, Correo, Direccion FROM cliente LEFT JOIN municipio ON cliente.Municipio = municipio.idMunicipio where estado ="1";
       `, (err1, cliente) => {
      if (err1) {
       res.json(err1);
@@ -60,7 +60,7 @@ controller.update = (req, res) => {
 controller.delete = (req, res) => {
   const { id } = req.params;
   req.getConnection((err, connection) => {
-    connection.query('DELETE FROM cliente WHERE idCliente = ?', [id], (err, rows) => {
+    connection.query('UPDATE cliente SET idCliente=? WHERE estado =0;', [id], (err, rows) => {
       res.redirect('/');
     });
   });
