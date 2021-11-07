@@ -1,0 +1,71 @@
+<% include partials/headermunicipio %>
+
+<div class="container mt-5">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.2/css/bulma.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bm/dt-1.11.3/datatables.min.css"/>
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-4 text-center">
+          <form action="/municipio/addm" method="POST">
+            <p style="text-align: center; margin:10px"><b>Ingresar Municipio</p></b>
+            <div class="form-group">
+              <input type="text" id="Validate" style="text-align: center; margin:10px" name="NombreMunicipio" onkeypress="return isNumberKey(event)"  maxlength="30"  placeholder="Nombre del Municipio" class="form-control" required="required" autofocus>
+            </div>
+            <div class="form-group">
+              <input type="number" style="text-align: center; margin:10px" name="NumeroMunicipio"  maxlength="3"  placeholder="Numero del Municipio" class="form-control" required="required" autofocus>
+            </div>
+
+            <button style="background-color: green;" type="submit" class="btn btn-primary">
+              Guardar Municipio
+            </button>
+          </form>
+
+    </div>
+  
+    <div class="col-xs-6 col-sm-6 col-md-8 text-center" >
+      <table id="municipioid" class="display table table-bordered table-striped text-center " style="width:100%; display: block">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre Municipio</th>
+            <th>Numero Municipio</th>
+            <th><b>Opciones</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].NombreMunicipio %></td>
+                <td><%= data[i].NumeroMunicipio %></td>
+                <td>
+                  <a  href="/municipio/updatem/<%= data[i].idMunicipio %>" class="btn btn-warning">Actualizar</a>
+                  <a style="margin-top: 2px; background-color: red;" href="/municipio/deletem/<%= data[i].idMunicipio %>" class="btn btn-danger">Eliminar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+  $(document).ready(function() {
+    $('#municipioid').DataTable();
+  });
+  $("input#Validate").bind('keypress', function(event) {
+  var regex = new RegExp("^[a-zA-Z ]+$");
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+});
+</script>
+
+
+
+
+
