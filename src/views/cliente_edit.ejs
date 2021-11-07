@@ -35,8 +35,13 @@
           </div>
           <div  style="margin-left: 12%;"  class="form-group">
             <select name="estado" class="form-control" id="estado" required>
-              <option name="estado" value="1">activo</option>
-              <option name="estado" value="0">Inactivo</option>  
+              <% if (data.estado == 1) { %>
+                <option name="estado" value="1" selected>activo</option>
+                <option name="estado" value="0">Inactivo</option>
+              <%} else{ %>
+                <option name="estado" value="1">activo</option>    
+              <option name="estado" value="0" selected>Inactivo</option> 
+              <% } %> 
             </select>
           </div>
           
